@@ -53,7 +53,7 @@ function Dashboard() {
       <section className="surface-ink rounded-2xl p-6 sm:p-9">
         <Badge
           variant="outline"
-          className="border-sidebar-primary/40 bg-sidebar-primary/15 text-sidebar-primary"
+          className="border-sidebar-primary/40 bg-sidebar-primary/15 text-sidebar-primary gap-1.5"
         >
           <Sparkles className="size-3.5" />
           Enterprise AI workspace
