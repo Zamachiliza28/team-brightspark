@@ -40,7 +40,7 @@ export function buildDemoOutput(input: GenerateInput): string {
     return [
       "## Meeting Summary",
       lines.length
-        ? `The notes cover ${lines.length} substantive threads, centred on ${lower(truncate(lines[0], 90))}.`
+        ? `The notes cover ${lines.length} substantive threads, centred on ${lower(truncate(lines[0] ?? "", 90))}.`
         : "Not specified.",
       "",
       "## Key Discussion Points",
