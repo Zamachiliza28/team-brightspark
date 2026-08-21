@@ -7,7 +7,7 @@ import { FEATURE_NAV } from "@/lib/nav";
 import { GLOBAL_DISCLAIMER } from "@/lib/ai-features";
 import { clearActivity, relativeTime, useActivity } from "@/lib/activity";
 
-export const Route = createFileRoute("/_authenticated/")({
+export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
       { title: "Dashboard — AI Workplace Productivity Assistant" },
@@ -59,7 +59,7 @@ function Dashboard() {
           Enterprise AI workspace
         </Badge>
         <h2 className="mt-4 max-w-2xl font-display text-2xl font-semibold sm:text-4xl">
-          Welcome back, Zamachiliza
+          {greeting}
         </h2>
         <p className="mt-3 max-w-2xl text-sm/relaxed text-sidebar-foreground/80 sm:text-base/relaxed">
           Five focused assistants for the work that eats your day: writing, summarising, planning and

@@ -9,47 +9,47 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as ChatRouteImport } from './routes/chat'
-import { Route as EmailRouteImport } from './routes/email'
-import { Route as MeetingsRouteImport } from './routes/meetings'
-import { Route as ResearchRouteImport } from './routes/research'
-import { Route as TasksRouteImport } from './routes/tasks'
+import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedEmailRouteImport } from './routes/_authenticated/email'
+import { Route as AuthenticatedMeetingsRouteImport } from './routes/_authenticated/meetings'
+import { Route as AuthenticatedResearchRouteImport } from './routes/_authenticated/research'
+import { Route as AuthenticatedTasksRouteImport } from './routes/_authenticated/tasks'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChatRoute = ChatRouteImport.update({
-  id: '/chat',
+const AuthenticatedChatRoute = AuthenticatedChatRouteImport.update({
+  id: '/_authenticated/chat',
   path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EmailRoute = EmailRouteImport.update({
-  id: '/email',
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/_authenticated/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedEmailRoute = AuthenticatedEmailRouteImport.update({
+  id: '/_authenticated/email',
   path: '/email',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MeetingsRoute = MeetingsRouteImport.update({
-  id: '/meetings',
+const AuthenticatedMeetingsRoute = AuthenticatedMeetingsRouteImport.update({
+  id: '/_authenticated/meetings',
   path: '/meetings',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResearchRoute = ResearchRouteImport.update({
-  id: '/research',
+const AuthenticatedResearchRoute = AuthenticatedResearchRouteImport.update({
+  id: '/_authenticated/research',
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TasksRoute = TasksRouteImport.update({
-  id: '/tasks',
+const AuthenticatedTasksRoute = AuthenticatedTasksRouteImport.update({
+  id: '/_authenticated/tasks',
   path: '/tasks',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -60,42 +60,42 @@ const ApiChatRoute = ApiChatRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/chat': typeof ChatRoute
-  '/email': typeof EmailRoute
-  '/meetings': typeof MeetingsRoute
-  '/research': typeof ResearchRoute
-  '/tasks': typeof TasksRoute
+  '/chat': typeof AuthenticatedChatRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email': typeof AuthenticatedEmailRoute
+  '/meetings': typeof AuthenticatedMeetingsRoute
+  '/research': typeof AuthenticatedResearchRoute
+  '/tasks': typeof AuthenticatedTasksRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/chat': typeof ChatRoute
-  '/email': typeof EmailRoute
-  '/meetings': typeof MeetingsRoute
-  '/research': typeof ResearchRoute
-  '/tasks': typeof TasksRoute
+  '/chat': typeof AuthenticatedChatRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email': typeof AuthenticatedEmailRoute
+  '/meetings': typeof AuthenticatedMeetingsRoute
+  '/research': typeof AuthenticatedResearchRoute
+  '/tasks': typeof AuthenticatedTasksRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/chat': typeof ChatRoute
-  '/email': typeof EmailRoute
-  '/meetings': typeof MeetingsRoute
-  '/research': typeof ResearchRoute
-  '/tasks': typeof TasksRoute
+  '/_authenticated/chat': typeof AuthenticatedChatRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/email': typeof AuthenticatedEmailRoute
+  '/_authenticated/meetings': typeof AuthenticatedMeetingsRoute
+  '/_authenticated/research': typeof AuthenticatedResearchRoute
+  '/_authenticated/tasks': typeof AuthenticatedTasksRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/about'
     | '/chat'
+    | '/dashboard'
     | '/email'
     | '/meetings'
     | '/research'
@@ -103,9 +103,9 @@ export interface FileRouteTypes {
     | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/about'
     | '/chat'
+    | '/dashboard'
     | '/email'
     | '/meetings'
     | '/research'
@@ -113,36 +113,29 @@ export interface FileRouteTypes {
     | '/api/chat'
   id:
     | '__root__'
-    | '/'
     | '/about'
-    | '/chat'
-    | '/email'
-    | '/meetings'
-    | '/research'
-    | '/tasks'
+    | '/_authenticated/chat'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/email'
+    | '/_authenticated/meetings'
+    | '/_authenticated/research'
+    | '/_authenticated/tasks'
     | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  ChatRoute: typeof ChatRoute
-  EmailRoute: typeof EmailRoute
-  MeetingsRoute: typeof MeetingsRoute
-  ResearchRoute: typeof ResearchRoute
-  TasksRoute: typeof TasksRoute
+  AuthenticatedChatRoute: typeof AuthenticatedChatRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEmailRoute: typeof AuthenticatedEmailRoute
+  AuthenticatedMeetingsRoute: typeof AuthenticatedMeetingsRoute
+  AuthenticatedResearchRoute: typeof AuthenticatedResearchRoute
+  AuthenticatedTasksRoute: typeof AuthenticatedTasksRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -150,39 +143,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chat': {
-      id: '/chat'
+    '/_authenticated/chat': {
+      id: '/_authenticated/chat'
       path: '/chat'
       fullPath: '/chat'
-      preLoaderRoute: typeof ChatRouteImport
+      preLoaderRoute: typeof AuthenticatedChatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/email': {
-      id: '/email'
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/email': {
+      id: '/_authenticated/email'
       path: '/email'
       fullPath: '/email'
-      preLoaderRoute: typeof EmailRouteImport
+      preLoaderRoute: typeof AuthenticatedEmailRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/meetings': {
-      id: '/meetings'
+    '/_authenticated/meetings': {
+      id: '/_authenticated/meetings'
       path: '/meetings'
       fullPath: '/meetings'
-      preLoaderRoute: typeof MeetingsRouteImport
+      preLoaderRoute: typeof AuthenticatedMeetingsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/research': {
-      id: '/research'
+    '/_authenticated/research': {
+      id: '/_authenticated/research'
       path: '/research'
       fullPath: '/research'
-      preLoaderRoute: typeof ResearchRouteImport
+      preLoaderRoute: typeof AuthenticatedResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tasks': {
-      id: '/tasks'
+    '/_authenticated/tasks': {
+      id: '/_authenticated/tasks'
       path: '/tasks'
       fullPath: '/tasks'
-      preLoaderRoute: typeof TasksRouteImport
+      preLoaderRoute: typeof AuthenticatedTasksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
@@ -196,13 +196,13 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  ChatRoute: ChatRoute,
-  EmailRoute: EmailRoute,
-  MeetingsRoute: MeetingsRoute,
-  ResearchRoute: ResearchRoute,
-  TasksRoute: TasksRoute,
+  AuthenticatedChatRoute: AuthenticatedChatRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEmailRoute: AuthenticatedEmailRoute,
+  AuthenticatedMeetingsRoute: AuthenticatedMeetingsRoute,
+  AuthenticatedResearchRoute: AuthenticatedResearchRoute,
+  AuthenticatedTasksRoute: AuthenticatedTasksRoute,
   ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
