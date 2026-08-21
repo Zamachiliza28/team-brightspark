@@ -16,7 +16,7 @@ import { AiOutput, EmptyOutput, OutputSkeleton } from "@/components/ai-output";
 import { DEPTHS } from "@/lib/ai-features";
 import { useFeatureGeneration } from "@/lib/use-generate";
 
-export const Route = createFileRoute("/research")({
+export const Route = createFileRoute("/_authenticated/research")({
   head: () => ({
     meta: [
       { title: "AI Research Assistant — Workplace AI Assistant" },

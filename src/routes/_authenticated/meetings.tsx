@@ -8,7 +8,7 @@ import { ToolPage } from "@/components/tool-page";
 import { AiOutput, EmptyOutput, OutputSkeleton } from "@/components/ai-output";
 import { useFeatureGeneration } from "@/lib/use-generate";
 
-export const Route = createFileRoute("/meetings")({
+export const Route = createFileRoute("/_authenticated/meetings")({
   head: () => ({
     meta: [
       { title: "Meeting Notes Summarizer — Workplace AI Assistant" },

@@ -7,7 +7,7 @@ import { FEATURE_NAV } from "@/lib/nav";
 import { GLOBAL_DISCLAIMER } from "@/lib/ai-features";
 import { clearActivity, relativeTime, useActivity } from "@/lib/activity";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/")({
   head: () => ({
     meta: [
       { title: "Dashboard — AI Workplace Productivity Assistant" },
