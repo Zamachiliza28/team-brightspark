@@ -1,5 +1,7 @@
 import {
   LayoutDashboard,
+  Home,
+  LogIn,
   Mail,
   FileText,
   ListChecks,
