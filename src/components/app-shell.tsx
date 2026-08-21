@@ -114,7 +114,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         )}
       >
         <Brand collapsed={collapsed} />
-        <NavLinks collapsed={collapsed} />
+        <NavLinks collapsed={collapsed} items={navItems} />
         <div className="border-t border-sidebar-border p-2">
           <button
             type="button"
