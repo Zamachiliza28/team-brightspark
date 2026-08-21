@@ -113,7 +113,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         )}
       >
         <Brand collapsed={collapsed} />
-        <NavLinks collapsed={collapsed} />
+        <NavLinks items={items} collapsed={collapsed} />
         <div className="border-t border-sidebar-border p-2">
           <button
             type="button"
@@ -139,7 +139,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <SheetTitle className="sr-only">Navigation</SheetTitle>
                 <div className="flex h-full flex-col">
                   <Brand />
-                  <NavLinks onNavigate={() => setMobileOpen(false)} />
+                  <NavLinks items={items} onNavigate={() => setMobileOpen(false)} />
                 </div>
               </SheetContent>
             </Sheet>
