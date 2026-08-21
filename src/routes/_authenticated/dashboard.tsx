@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { FEATURE_NAV } from "@/lib/nav";
 import { GLOBAL_DISCLAIMER } from "@/lib/ai-features";
 import { clearActivity, relativeTime, useActivity } from "@/lib/activity";
+import { displayName, useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
