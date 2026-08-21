@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AppShell } from "@/components/app-shell";
 import { DemoModeProvider } from "@/components/demo-mode";
 import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "@/lib/auth";
 
 
 function NotFoundComponent() {
