@@ -47,6 +47,8 @@ const QUICK_ACTIONS = [
 function Dashboard() {
   const activity = useActivity();
   const [tipIndex, setTipIndex] = useState(0);
+  const { profile, user } = useAuth();
+  const greeting = `Welcome back, ${displayName(profile, user).split(" ")[0]}`;
 
   return (
     <div className="space-y-6">
