@@ -74,8 +74,21 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const current = navForPath(pathname);
   const { demoMode, setDemoMode } = useDemoMode();
+  const { user, profile } = useAuth();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const name = displayName(profile, user);
+  const items = user ? NAV_ITEMS : PUBLIC_NAV;
+
+  async function handleSignOut() {
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    void navigate({ to: "/auth", replace: true });
+  }
 
   useEffect(() => {
     setMobileOpen(false);
