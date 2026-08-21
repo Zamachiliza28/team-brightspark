@@ -140,7 +140,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <SheetTitle className="sr-only">Navigation</SheetTitle>
                 <div className="flex h-full flex-col">
                   <Brand />
-                  <NavLinks onNavigate={() => setMobileOpen(false)} />
+                  <NavLinks onNavigate={() => setMobileOpen(false)} items={navItems} />
                 </div>
               </SheetContent>
             </Sheet>
