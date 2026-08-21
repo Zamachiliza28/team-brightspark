@@ -42,10 +42,18 @@ function Brand({ collapsed }: { collapsed?: boolean }) {
   );
 }
 
-function NavLinks({ collapsed, onNavigate }: { collapsed?: boolean; onNavigate?: () => void }) {
+function NavLinks({
+  items,
+  collapsed,
+  onNavigate,
+}: {
+  items: NavItem[];
+  collapsed?: boolean;
+  onNavigate?: () => void;
+}) {
   return (
     <nav className="flex flex-1 flex-col gap-1 px-2 pb-4">
-      {NAV_ITEMS.map((item) => (
+      {items.map((item) => (
         <Link
           key={item.to}
           to={item.to}
