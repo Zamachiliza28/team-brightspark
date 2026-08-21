@@ -18,9 +18,27 @@ export type NavItem = {
   icon: LucideIcon;
 };
 
+export const HOME_ITEM: NavItem = {
+  to: "/",
+  label: "Home",
+  title: "AI Workplace Productivity Assistant",
+  subtitle: "Enterprise AI assistants with responsible-AI guardrails",
+  short: "Overview of the workspace and its assistants.",
+  icon: Home,
+};
+
+export const AUTH_ITEM: NavItem = {
+  to: "/auth",
+  label: "Sign in",
+  title: "Workspace access",
+  subtitle: "Sign in or create an account to open the assistants",
+  short: "Account creation, sign-in and session management.",
+  icon: LogIn,
+};
+
 export const NAV_ITEMS: NavItem[] = [
   {
-    to: "/",
+    to: "/dashboard",
     label: "Dashboard",
     title: "Dashboard",
     subtitle: "Your workplace productivity command centre",
