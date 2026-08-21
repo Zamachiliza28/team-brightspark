@@ -17,7 +17,7 @@ import { AiOutput, EmptyOutput, OutputSkeleton } from "@/components/ai-output";
 import { AUDIENCES, TONES, type EmailInput } from "@/lib/ai-features";
 import { useFeatureGeneration } from "@/lib/use-generate";
 
-export const Route = createFileRoute("/email")({
+export const Route = createFileRoute("/_authenticated/email")({
   head: () => ({
     meta: [
       { title: "Smart Email Generator — Workplace AI Assistant" },

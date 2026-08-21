@@ -17,7 +17,7 @@ import { AiOutput, EmptyOutput, OutputSkeleton } from "@/components/ai-output";
 import { PRIORITIES, type TaskItem } from "@/lib/ai-features";
 import { useFeatureGeneration } from "@/lib/use-generate";
 
-export const Route = createFileRoute("/tasks")({
+export const Route = createFileRoute("/_authenticated/tasks")({
   head: () => ({
     meta: [
       { title: "AI Task Planner — Workplace AI Assistant" },

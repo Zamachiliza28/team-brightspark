@@ -1,5 +1,7 @@
 import {
   LayoutDashboard,
+  Home,
+  LogIn,
   Mail,
   FileText,
   ListChecks,
@@ -18,9 +20,27 @@ export type NavItem = {
   icon: LucideIcon;
 };
 
+export const HOME_ITEM: NavItem = {
+  to: "/",
+  label: "Home",
+  title: "AI Workplace Productivity Assistant",
+  subtitle: "Enterprise AI assistants with responsible-AI guardrails",
+  short: "Overview of the workspace and its assistants.",
+  icon: Home,
+};
+
+export const AUTH_ITEM: NavItem = {
+  to: "/auth",
+  label: "Sign in",
+  title: "Workspace access",
+  subtitle: "Sign in or create an account to open the assistants",
+  short: "Account creation, sign-in and session management.",
+  icon: LogIn,
+};
+
 export const NAV_ITEMS: NavItem[] = [
   {
-    to: "/",
+    to: "/dashboard",
     label: "Dashboard",
     title: "Dashboard",
     subtitle: "Your workplace productivity command centre",
@@ -78,12 +98,16 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const FEATURE_NAV = NAV_ITEMS.filter(
-  (item) => item.to !== "/" && item.to !== "/about",
+  (item) => item.to !== "/dashboard" && item.to !== "/about",
 );
 
+export const PUBLIC_NAV: NavItem[] = [HOME_ITEM, NAV_ITEMS[NAV_ITEMS.length - 1]!, AUTH_ITEM];
+
+const ALL_ITEMS = [HOME_ITEM, AUTH_ITEM, ...NAV_ITEMS];
+
 export function navForPath(pathname: string): NavItem {
-  const exact = NAV_ITEMS.find((item) => item.to === pathname);
+  const exact = ALL_ITEMS.find((item) => item.to === pathname);
   if (exact) return exact;
-  const nested = NAV_ITEMS.find((item) => item.to !== "/" && pathname.startsWith(item.to));
-  return nested ?? NAV_ITEMS[0]!;
+  const nested = ALL_ITEMS.find((item) => item.to !== "/" && pathname.startsWith(item.to));
+  return nested ?? HOME_ITEM;
 }

@@ -12,7 +12,7 @@ import { buildDemoChatReply } from "@/lib/demo-data";
 import { logActivity } from "@/lib/activity";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/chat")({
+export const Route = createFileRoute("/_authenticated/chat")({
   head: () => ({
     meta: [
       { title: "AI Workplace Chatbot — Workplace AI Assistant" },
