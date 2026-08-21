@@ -42,10 +42,18 @@ function Brand({ collapsed }: { collapsed?: boolean }) {
   );
 }
 
-function NavLinks({ collapsed, onNavigate }: { collapsed?: boolean; onNavigate?: () => void }) {
+function NavLinks({
+  collapsed,
+  onNavigate,
+  items,
+}: {
+  collapsed?: boolean;
+  onNavigate?: () => void;
+  items: NavItem[];
+}) {
   return (
     <nav className="flex flex-1 flex-col gap-1 px-2 pb-4">
-      {NAV_ITEMS.map((item) => (
+      {items.map((item) => (
         <Link
           key={item.to}
           to={item.to}
@@ -74,8 +82,22 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const current = navForPath(pathname);
   const { demoMode, setDemoMode } = useDemoMode();
+  const { session, user, profile } = useAuth();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const signedIn = Boolean(session);
+  const navItems: NavItem[] = signedIn ? NAV_ITEMS : PUBLIC_NAV;
+  const name = displayName(profile, user);
+  const role = jobTitle(profile);
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    queryClient.clear();
+    void navigate({ to: "/auth" });
+  };
 
   useEffect(() => {
     setMobileOpen(false);
@@ -92,7 +114,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         )}
       >
         <Brand collapsed={collapsed} />
-        <NavLinks collapsed={collapsed} />
+        <NavLinks collapsed={collapsed} items={navItems} />
         <div className="border-t border-sidebar-border p-2">
           <button
             type="button"
@@ -118,7 +140,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <SheetTitle className="sr-only">Navigation</SheetTitle>
                 <div className="flex h-full flex-col">
                   <Brand />
-                  <NavLinks onNavigate={() => setMobileOpen(false)} />
+                  <NavLinks onNavigate={() => setMobileOpen(false)} items={navItems} />
                 </div>
               </SheetContent>
             </Sheet>
@@ -150,15 +172,32 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               />
             </div>
 
-            <div className="flex items-center gap-2 border-s border-border ps-3">
-              <span className="grid size-9 place-items-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
-                {USER.initials}
-              </span>
-              <span className="hidden leading-tight md:block">
-                <span className="block text-sm font-medium text-foreground">{USER.name}</span>
-                <span className="block text-xs text-muted-foreground">{USER.role}</span>
-              </span>
-            </div>
+            {signedIn ? (
+              <div className="flex items-center gap-2 border-s border-border ps-3">
+                <span className="grid size-9 place-items-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
+                  {initialsFor(name)}
+                </span>
+                <span className="hidden leading-tight md:block">
+                  <span className="block text-sm font-medium text-foreground">{name}</span>
+                  <span className="block text-xs text-muted-foreground">{role}</span>
+                </span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Sign out"
+                  title="Sign out"
+                  onClick={signOut}
+                >
+                  <LogOut className="size-4" />
+                </Button>
+              </div>
+            ) : (
+              <div className="border-s border-border ps-3">
+                <Button asChild size="sm">
+                  <Link to="/auth">Sign in</Link>
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-wrap items-center gap-2 border-t border-border bg-muted/60 px-4 py-2 text-xs text-muted-foreground sm:px-6">
