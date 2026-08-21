@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   AlertTriangle,
   ChevronsLeft,
   ChevronsRight,
   FlaskConical,
+  LogOut,
   Menu,
   Sparkles,
 } from "lucide-react";
-import { NAV_ITEMS, navForPath } from "@/lib/nav";
+import { NAV_ITEMS, PUBLIC_NAV, navForPath, type NavItem } from "@/lib/nav";
 import { GLOBAL_DISCLAIMER } from "@/lib/ai-features";
 import { useDemoMode } from "@/components/demo-mode";
+import { displayName, initialsFor, jobTitle, useAuth } from "@/lib/auth";
+import { supabase } from "@/integrations/supabase/client";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-
-const USER = { name: "Zamachiliza Mbense", role: "Operations Lead", initials: "ZM" };
 
 function Brand({ collapsed }: { collapsed?: boolean }) {
   return (
